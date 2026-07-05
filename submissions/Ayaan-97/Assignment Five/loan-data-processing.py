@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 
 CSV_PATH = "./dataset/raw_loan_dataset.csv"
 OUT_PATH = "./dataset/clean_loan_dataset.csv"
@@ -10,14 +10,14 @@ OUT_PATH = "./dataset/clean_loan_dataset.csv"
 # # --------------------------------
 df = pd.read_csv(CSV_PATH)
 
-# print("\n=== Before HEAD ===")
-# print(df.head())
+print("\n=== Before HEAD ===")
+print(df.head())
 
-# print("\n=== Before INFO ===")
-# print(df.info())
+print("\n=== Before INFO ===")
+print(df.info())
 
-# print("\n=== Before MISSING VALUES ===")
-# print(df.isnull().sum())
+print("\n=== Before MISSING VALUES ===")
+print(df.isnull().sum())
 
 #---------------------------------
 # 2) Clean currency formatting
@@ -48,14 +48,14 @@ df["LoanAmount"] = df["LoanAmount"].fillna(df["LoanAmount"].median())
 df["HasCollateral"] = df["HasCollateral"].fillna(df["HasCollateral"].mode()[0])
 df["PreviousDefaults"] = df["PreviousDefaults"].fillna(df["PreviousDefaults"].mode()[0])
 
-# print("\n=== After HEAD ===")
-# print(df.head())
+print("\n=== After HEAD ===")
+print(df.head())
 
-# print("\n=== After INFO ===")
-# print(df.info())
+print("\n=== After INFO ===")
+print(df.info())
 
-# print("\n=== After MISSING VALUES ===")
-# print(df.isnull().sum())
+print("\n=== After MISSING VALUES ===")
+print(df.isnull().sum())
 
 # --------------------------------
 # 5) Remove duplicates
@@ -118,15 +118,15 @@ df["DebtToIncome"] = df["LoanAmount"] / df["Income"].replace(0, np.nan)
 df["IncomePerYearEmployed"] = df["Income"] / (df["EmploymentYears"] + 1)
 
 # --------------------------------
-# 10) StandardScaler on numeric features
-# L3: scale after outlier capping so mean/std are not skewed by extremes
+# 10) MinMaxScaler on numeric features
+# L3: scale after outlier capping so values stay within a consistent range
 # Exclude label (Approved) and already-binary columns from scaling
 # --------------------------------
 binary_cols = {"HasCollateral", "PreviousDefaults", "Approved"}
 numeric_cols = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
 scale_cols = [c for c in numeric_cols if c not in binary_cols]
 
-scaler = StandardScaler()
+scaler = MinMaxScaler()
 df[scale_cols] = scaler.fit_transform(df[scale_cols])
 
 # --------------------------------
