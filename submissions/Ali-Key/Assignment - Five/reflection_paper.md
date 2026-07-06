@@ -1,7 +1,7 @@
 # Assignment Five — Part C: Reflection Paper
 
-**Author:** Ali Omar Abdi
-**Course:** DS-ML Bootcamp
+**Author:** Ali Omar Abdi     
+**Course:** DS-ML Bootcamp.  
 **Due:** Sunday, July 5, 2026 — 12:00 PM (Africa/Mogadishu / EAT)
 ---
 
@@ -83,5 +83,5 @@ Breiman, L. (2001). Random Forests. *Machine Learning*, 45(1), 5-32. https://doi
 
 ---
 
-*Submitted for DS-ML Bootcamp — Assignment Five*
+*Submitted for DS-ML Bootcamp — Assignment Five*     
 **Due:** Sunday, July 5, 2026*
