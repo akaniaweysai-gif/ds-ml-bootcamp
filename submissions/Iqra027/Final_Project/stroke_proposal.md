@@ -1,14 +1,12 @@
 # Project Proposal — Stroke Risk Prediction API
 
 ## 1. Certificate Name
-
-**Iqra Dahir**
----
+Iqra Dahir
 ## 2. Project Title and Description
 
 **Title:** Stroke Risk Prediction API
 
-Hospitals and clinics screen large numbers of patients for stroke risk factors, but early warning signs are often missed until it's too late. This project builds a machine learning model that predicts whether a patient is at risk of stroke based on health and demographic data (age, glucose level, BMI, hypertension, heart disease, smoking status, etc.). The final deliverable is a REST API that accepts patient data as JSON and returns a stroke-risk prediction with a probability score, plus a plain-language explanation of *why* — useful for a clinical triage dashboard or health-screening tool.
+*Hospitals and clinics screen large numbers of patients for stroke risk factors, but early warning signs are often missed until it's too late. This project builds a machine learning model that predicts whether a patient is at risk of stroke based on health and demographic data (age, glucose level, BMI, hypertension, heart disease, smoking status, etc.).*
 ---
 ## 3. Problem Type
 
@@ -45,7 +43,7 @@ Target column: `stroke` (1 = had stroke, 0 = did not). Supervised learning, trai
 Three algorithms (Logistic Regression, Random Forest) are bootcamp standard. SVM,Decision Tree and XGBoost are researched additions.
 
 **Handling class imbalance:** since the dataset is ~95/5 imbalanced, this is treated as a *preprocessing/training technique* applied consistently across models (via `class_weight='balanced'` where supported, and `scale_pos_weight` for XGBoost) rather than as separate algorithm entries — keeping the comparison table clean while still addressing the imbalance problem head-on.
----
+
 ## 6. Evaluation Plan
 
 **Metrics for all models (on the same held-out test set):**
