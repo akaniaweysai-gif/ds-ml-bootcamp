@@ -55,15 +55,19 @@ Represents whether the patient has diabetes.
 ### Main Features
 
 | Feature             | Description                                        |
-| ------------------- | -------------------------------------------------- |
-| gender              | Patient's gender                                   |
-| age                 | Age in years                                       |
-| hypertension        | Whether the patient has hypertension               |
-| heart_disease       | Whether the patient has heart disease              |
-| smoking_history     | Smoking status                                     |
-| bmi                 | Body Mass Index                                    |
-| HbA1c_level         | Average blood sugar level over the past 2–3 months |
-| blood_glucose_level | Current blood glucose measurement                  |
+| ------------------- | 
+| Feature                  | Description                     |
+| ------------------------ | ------------------------------- |
+| Pregnancies              | Number of pregnancies           |
+| Glucose                  | Plasma glucose concentration    |
+| BloodPressure            | Diastolic blood pressure        |
+| SkinThickness            | Triceps skin fold thickness     |
+| Insulin                  | 2-hour serum insulin level      |
+| BMI                      | Body Mass Index                 |
+| DiabetesPedigreeFunction | Genetic risk score for diabetes |
+| Age                      | Patient age                     |
+| smoking_history          | Smoking status                  |
+
 
 These features will be used to predict the diabetes status.
 
@@ -108,30 +112,25 @@ I will use **F1-Score** as the primary evaluation metric because it balances Pre
 I will deploy the final model using **Flask**.
 
 ### `/predict` Endpoint Input (JSON)
-
-```json
 {
-  "gender": "Female",
-  "age": 45,
-  "hypertension": 0,
-  "heart_disease": 0,
-  "smoking_history": "never",
-  "bmi": 27.5,
-  "HbA1c_level": 5.8,
-  "blood_glucose_level": 140
+  "Pregnancies": 2,
+  "Glucose": 150,
+  "BloodPressure": 72,
+  "SkinThickness": 35,
+  "Insulin": 120,
+  "BMI": 31.5,
+  "DiabetesPedigreeFunction": 0.45,
+  "Age": 42,
+  "smoking_history": "never"
 }
-```
 
 ### API Response
 
-```json
 {
   "prediction": "Diabetes",
   "prediction_value": 1,
-  "probability": 0.91
+  "probability": 0.94
 }
-```
-
 The API will accept patient information and return the predicted diabetes status together with the prediction probability.
 
 ---
