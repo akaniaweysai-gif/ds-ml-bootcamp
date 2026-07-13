@@ -14,28 +14,27 @@
 
 ## Title
 
-**Student Academic Performance Prediction System Using Machine Learning**
+**Customer Purchase Amount Prediction Using Machine Learning**
 
 ## Description
 
-Educational institutions collect large amounts of student data, including attendance records, study habits, previous academic performance, and demographic information. Analyzing this information can help identify students who may need additional academic support before their final examinations.
+Retail businesses collect customer shopping information to better understand purchasing behavior and improve business decisions. Predicting how much a customer is likely to spend helps companies personalize marketing campaigns, optimize inventory, and improve customer satisfaction.
 
-The goal of this project is to develop a machine learning system that predicts whether a student is likely to pass or fail based on academic and personal characteristics. The system will assist teachers and school administrators in identifying at-risk students early, allowing timely interventions to improve academic performance.
+This project aims to develop a machine learning model that predicts the **Purchase Amount (USD)** based on customer demographic information, shopping preferences, and purchasing history.
 
-The final model will be deployed using **FastAPI**, providing a REST API that accepts student information and returns a prediction. This project demonstrates the complete machine learning workflow, including data preprocessing, model training, evaluation, comparison of multiple algorithms, and deployment.
+The best-performing model will be deployed using **FastAPI**, allowing users to submit customer information and receive a predicted purchase amount through a REST API.
 
 ---
 
 # 3. Problem Type
 
-## Classification (Supervised Learning)
+## Regression (Supervised Learning)
 
-The objective of this project is to predict whether a student will successfully pass or fail.
+The objective of this project is to predict the amount of money a customer is expected to spend.
 
 ### Output
 
-* Pass
-* Fail
+* Purchase Amount (USD)
 
 ---
 
@@ -43,81 +42,77 @@ The objective of this project is to predict whether a student will successfully 
 
 ## Source
 
-**Student Performance Dataset (Kaggle)**
+**Customer Shopping Trends Dataset (Kaggle)**
 
-https://www.kaggle.com/datasets
-
-(A student performance dataset containing more than 1,000 records will be selected.)
+https://www.kaggle.com/datasets/iamsouravbanerjee/customer-shopping-trends-dataset/data
 
 ## Dataset Size
 
-* More than 1,000 rows
+* Approximately 3,900 customer records
 * Multiple numerical and categorical features
 
 ## Target Column
 
-`Final_Result`
-
-### Classes
-
-* Pass
-* Fail
+`Purchase Amount (USD)`
 
 ## Main Features
 
 * Age
 * Gender
-* Study Hours
-* Attendance
-* Previous Grades
-* Internet Access
-* Parent Education
-* Family Support
-* School Type
-* Extra Classes
+* Category
+* Item Purchased
+* Size
+* Color
+* Season
+* Review Rating
+* Subscription Status
+* Previous Purchases
+* Payment Method
+* Shipping Type
+* Discount Applied
+* Promo Code Used
+* Frequency of Purchases
 
 ## Preprocessing Plan
 
-* Perform Exploratory Data Analysis (EDA).
-* Remove duplicate records.
-* Handle missing values.
-* Encode categorical variables.
-* Scale numerical features.
-* Detect and treat outliers.
-* Perform feature selection.
-* Split the dataset into training and testing sets.
+* Perform Exploratory Data Analysis (EDA)
+* Remove duplicate records
+* Handle missing values
+* Encode categorical variables
+* Scale numerical features
+* Detect and handle outliers
+* Perform feature selection
+* Split the dataset into training and testing sets
 
 ---
 
 # 5. Algorithms I Plan to Train
 
-## Logistic Regression
+## Linear Regression
 
-A simple and interpretable classification algorithm that will be used as the baseline model.
+A simple baseline regression model for predicting purchase amount.
 
-## Decision Tree Classifier
+## Decision Tree Regressor
 
-A tree-based algorithm capable of learning complex decision rules from the data.
+A non-linear regression algorithm capable of learning complex relationships.
 
-## Random Forest Classifier
+## Random Forest Regressor
 
-An ensemble learning algorithm that combines multiple decision trees to improve prediction accuracy and reduce overfitting. It is expected to produce the best performance.
+An ensemble model expected to provide the highest prediction accuracy.
 
 ---
 
 # 6. Evaluation Plan
 
-The following classification metrics will be used to compare all models:
+The following regression metrics will be used:
 
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-* Confusion Matrix
+* Mean Absolute Error (MAE)
+* Root Mean Squared Error (RMSE)
+* R² Score
 
-The best model will be selected based on the **highest F1-Score**, since it balances Precision and Recall and provides a reliable evaluation for classification problems.
+The best model will be selected using the **highest R² Score** together with the **lowest MAE and RMSE**.
 
-After selecting the best-performing model, at least three sanity checks will be performed using sample student records to verify that the predictions are reasonable.
+Three sanity checks will also be performed using sample customer records.
 
 ---
 
@@ -127,11 +122,11 @@ After selecting the best-performing model, at least three sanity checks will be 
 
 * FastAPI
 * REST API
-* Interactive API documentation (`/docs`)
+* Swagger Documentation (`/docs`)
 
 ## API Endpoint
 
-### Student Performance Prediction
+### Purchase Prediction
 
 ```http
 POST /predict
@@ -141,13 +136,13 @@ POST /predict
 
 ```json
 {
-  "age": 18,
-  "gender": "Male",
-  "study_hours": 4,
-  "attendance": 92,
-  "previous_grade": 78,
-  "internet_access": "Yes",
-  "family_support": "Yes"
+  "Age": 29,
+  "Gender": "Male",
+  "Category": "Clothing",
+  "Season": "Winter",
+  "Review Rating": 4.5,
+  "Previous Purchases": 12,
+  "Subscription Status": "Yes"
 }
 ```
 
@@ -155,23 +150,20 @@ POST /predict
 
 ```json
 {
-  "prediction": "Pass",
-  "probability": 0.94
+  "predicted_purchase_amount": 135.60
 }
 ```
-
-The API will preprocess the input data, load the trained machine learning model, generate a prediction, and return the result as a JSON response.
 
 ---
 
 # 8. Repository Plan
 
 ```text
-student-performance-prediction/
+customer-purchase-prediction/
 │
 ├── dataset/
-│   ├── raw_student_data.csv
-│   └── clean_student_data.csv
+│   ├── shopping_trends.csv
+│   └── clean_shopping_data.csv
 │
 ├── notebooks/
 │   ├── eda.ipynb
@@ -208,4 +200,4 @@ uvicorn api.app:app --reload
 
 # 9. Expected Outcome
 
-This project is expected to produce an accurate machine learning model capable of predicting student academic performance. The final system will compare three classification algorithms, select the best-performing model based on evaluation metrics, and deploy it through a FastAPI REST API. The completed project will demonstrate practical skills in data preprocessing, supervised machine learning, model evaluation, API development, and software project organization.
+The project will produce a machine learning application capable of predicting customer purchase amounts with good accuracy. It will compare three regression algorithms, select the best-performing model, and deploy it through a FastAPI REST API. The completed project will demonstrate practical skills in data preprocessing, regression modeling, model evaluation, and API deployment.

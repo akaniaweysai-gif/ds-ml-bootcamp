@@ -1,53 +1,57 @@
-# Student Academic Performance Prediction System
+# Customer Purchase Amount Prediction Using Machine Learning
 
 ## Project Overview
 
-The **Student Academic Performance Prediction System** is a machine learning project that predicts whether a student is likely to **Pass** or **Fail** based on academic, demographic, and personal information.
+This project predicts the **Purchase Amount (USD)** that a customer is likely to spend based on demographic information, shopping preferences, and purchase history.
 
-The project demonstrates the complete machine learning workflow, including data preprocessing, model training, evaluation, comparison of multiple algorithms, and deployment using **FastAPI**.
-
----
-
-# Objectives
-
-* Predict student academic performance.
-* Compare multiple machine learning algorithms.
-* Select the best-performing model.
-* Deploy the final model as a REST API.
-* Demonstrate an end-to-end machine learning project.
+The project demonstrates an end-to-end machine learning workflow, including data preprocessing, model training, evaluation, model comparison, and deployment using **FastAPI**.
 
 ---
 
-# Dataset
+## Dataset
 
-**Source:** Kaggle – Student Performance Dataset
+**Name:** Customer Shopping Trends Dataset
 
-**Dataset Size:**
-
-* More than 1,000 records
-* Numerical and categorical features
+**Source:**
+https://www.kaggle.com/datasets/iamsouravbanerjee/customer-shopping-trends-dataset/data
 
 ### Features
 
 * Age
 * Gender
-* Study Hours
-* Attendance
-* Previous Grades
-* Internet Access
-* Family Support
-* Parent Education
-* School Type
-* Extra Classes
+* Category
+* Item Purchased
+* Size
+* Color
+* Season
+* Review Rating
+* Subscription Status
+* Previous Purchases
+* Payment Method
+* Shipping Type
+* Discount Applied
+* Promo Code Used
+* Frequency of Purchases
 
 ### Target
 
-* **Pass**
-* **Fail**
+**Purchase Amount (USD)**
 
 ---
 
-# Data Preprocessing
+## Machine Learning Algorithms
+
+The following regression models are trained and compared:
+
+* Linear Regression
+* Decision Tree Regressor
+* Random Forest Regressor
+
+The best-performing model is selected using **R² Score**, **MAE**, and **RMSE**.
+
+---
+
+## Data Preprocessing
 
 The preprocessing pipeline includes:
 
@@ -56,42 +60,29 @@ The preprocessing pipeline includes:
 * Handling missing values
 * Encoding categorical variables
 * Scaling numerical features
-* Detecting and handling outliers
+* Handling outliers
 * Feature selection
 * Train/Test split
 
 ---
 
-# Machine Learning Algorithms
+## Technologies Used
 
-The following classification algorithms are trained and compared:
-
-1. Logistic Regression
-2. Decision Tree Classifier
-3. Random Forest Classifier
-
-The best-performing model is selected based on the highest **F1-Score**.
-
----
-
-# Evaluation Metrics
-
-The models are evaluated using:
-
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-* Confusion Matrix
-
-Three sanity checks are also performed on the best model.
+* Python
+* Pandas
+* NumPy
+* Scikit-learn
+* FastAPI
+* Uvicorn
+* Joblib
+* Jupyter Notebook
 
 ---
 
-# Project Structure
+## Project Structure
 
 ```text
-student-performance-prediction/
+customer-purchase-prediction/
 │
 ├── dataset/
 ├── notebooks/
@@ -106,21 +97,21 @@ student-performance-prediction/
 
 ---
 
-# Installation
+## Installation
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/student-performance-prediction.git
+git clone https://github.com/your-username/customer-purchase-prediction.git
 ```
 
-Move into the project directory:
+Move into the project folder:
 
 ```bash
-cd student-performance-prediction
+cd customer-purchase-prediction
 ```
 
-Install the required packages:
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -128,9 +119,7 @@ pip install -r requirements.txt
 
 ---
 
-# Training the Model
-
-Run the training script:
+## Train the Models
 
 ```bash
 python src/train.py
@@ -138,73 +127,53 @@ python src/train.py
 
 ---
 
-# Running the API
-
-Start the FastAPI server:
+## Run the API
 
 ```bash
 uvicorn api.app:app --reload
 ```
 
-Open the API documentation:
+Open Swagger UI:
 
-```
+```text
 http://127.0.0.1:8000/docs
 ```
 
 ---
 
-# Example API Request
+## Example API Request
 
 ### POST `/predict`
 
-Example JSON request:
-
 ```json
 {
-  "age": 18,
-  "gender": "Male",
-  "study_hours": 4,
-  "attendance": 92,
-  "previous_grade": 78,
-  "internet_access": "Yes",
-  "family_support": "Yes"
+  "Age": 29,
+  "Gender": "Male",
+  "Category": "Clothing",
+  "Season": "Winter",
+  "Review Rating": 4.5,
+  "Previous Purchases": 12,
+  "Subscription Status": "Yes"
 }
 ```
 
-Example JSON response:
+### Example Response
 
 ```json
 {
-  "prediction": "Pass",
-  "probability": 0.94
+  "predicted_purchase_amount": 135.60
 }
 ```
 
 ---
 
-# Results Summary
+## Results Summary
 
-Three machine learning algorithms were trained and evaluated using the same dataset and train/test split. The model with the highest F1-Score was selected as the final model and deployed using FastAPI.
-
-The project demonstrates how machine learning can assist educational institutions in identifying students who may require additional academic support before final examinations.
+Three regression algorithms are trained and evaluated using the same dataset and train/test split. The model with the highest R² Score and the lowest MAE and RMSE is selected as the final model and deployed through FastAPI.
 
 ---
 
-# Technologies Used
-
-* Python
-* Pandas
-* NumPy
-* Scikit-learn
-* FastAPI
-* Uvicorn
-* Joblib
-* Jupyter Notebook
-
----
-
-# Author
+## Author
 
 **Abdullahi Hassan Shire**
 
