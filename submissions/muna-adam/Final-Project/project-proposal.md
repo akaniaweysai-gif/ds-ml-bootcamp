@@ -70,8 +70,6 @@ This is the target variable used for binary classification. It indicates whether
 - **0** = Does Not Have Pulmonary Disease
 
 ## Main Features
-## Main Features
-## Main Features
 
 | Feature | Description |
 |---------|-------------|
@@ -92,7 +90,8 @@ This is the target variable used for binary classification. It indicates whether
 | Family_History | Family history of pulmonary disease. |
 | Smoking_Family_History | Family history of smoking. |
 | Stress_Immune | Indicates whether stress has affected the immune system. |
-| Pulmonary_Disease | **Target variable** indicating whether the individual has pulmonary disease (Yes/No). |
+| Pulmonary_Disease | **Target variable** indicating whether the individual has pulmonar
+y disease (Yes/No). |
 sease (Yes/No). |
 ```
 # 5. Algorithms You Plan to Train
